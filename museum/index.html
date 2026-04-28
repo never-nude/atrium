@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en" data-theme="dark" style="color-scheme: dark;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>Form Gallery — Digital Sculpture Collection</title>
+    <meta
+      name="description"
+      content="Form Gallery is a digital sculpture collection spanning antiquity through the twenty-first century. Browse by gallery, era, region, or maker."
+    />
+    <meta name="theme-color" content="#111017" />
+    <meta property="og:title" content="Form Gallery — Digital Sculpture Collection" />
+    <meta
+      property="og:description"
+      content="Form Gallery is a digital sculpture collection spanning antiquity through the twenty-first century. Browse by gallery, era, region, or maker."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://never-nude.github.io/atrium/museum/" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Form Gallery — Digital Sculpture Collection" />
+    <meta
+      name="twitter:description"
+      content="Form Gallery is a digital sculpture collection spanning antiquity through the twenty-first century. Browse by gallery, era, region, or maker."
+    />
+    <script>
+      window.FORM_GALLERY_BASE_PATH = window.location.pathname === "/atrium" || window.location.pathname.startsWith("/atrium/") ? "/atrium" : "";
+      document.write('<link rel="stylesheet" href="' + window.FORM_GALLERY_BASE_PATH + '/museum/shared/museum.css?v=20260428-1950">');
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <p style="margin:16px;font-family:IBM Plex Sans, Avenir Next, sans-serif;color:#2f2a22;">The museum viewer requires JavaScript.</p>
+    </noscript>
+    <script type="module">
+      const basePath = window.FORM_GALLERY_BASE_PATH || "";
+      const { initMuseumPageForCurrentPath } = await import(basePath + "/museum/shared/page.js?v=20260428-1950");
+      initMuseumPageForCurrentPath();
+    </script>
+  </body>
+</html>

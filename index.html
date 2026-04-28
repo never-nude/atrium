@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en" data-theme="dark" style="color-scheme: dark;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Form Gallery</title>
+    <meta http-equiv="refresh" content="0; url=museum/" />
+    <style>
+      :root {
+        color-scheme: dark;
+        --bg: #0b0a10;
+        --text: #ece3d3;
+        --muted: #998a78;
+        --line: #2a2330;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        display: grid;
+        place-items: center;
+        padding: 24px;
+        background: radial-gradient(circle at top right, #d9c1ee14 0%, transparent 28%), var(--bg);
+        color: var(--text);
+        font-family: "IBM Plex Sans", "Avenir Next", sans-serif;
+      }
+
+      main {
+        max-width: 560px;
+        padding: 28px 30px;
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        background: #1a1521f2;
+        box-shadow: 0 18px 36px #00000040, inset 0 1px 0 #ffffff10;
+      }
+
+      p {
+        margin: 0 0 12px;
+        line-height: 1.55;
+      }
+
+      a {
+        color: inherit;
+      }
+    </style>
+    <script>
+      const basePath = window.location.pathname === "/atrium" || window.location.pathname.startsWith("/atrium/") ? "/atrium" : "";
+      window.location.replace(`${basePath}/museum/`);
+    </script>
+  </head>
+  <body>
+    <main>
+      <p><strong>Form Gallery</strong></p>
+      <p>Opening the digital sculpture collection.</p>
+      <p><a href="museum/">Open Form Gallery</a></p>
+    </main>
+  </body>
+</html>

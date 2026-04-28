@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en" data-theme="dark" style="color-scheme: dark;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>Sandbox — Smithsonian Trio</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f3efe7;
+        --panel: rgba(255, 252, 246, 0.88);
+        --ink: #1f1c17;
+        --muted: #655b4c;
+        --line: rgba(72, 57, 34, 0.14);
+        --accent: #7f2a1d;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        min-height: 100vh;
+        font-family: "Avenir Next", "Segoe UI", sans-serif;
+        color: var(--ink);
+        background:
+          radial-gradient(circle at top left, rgba(255, 255, 255, 0.75), transparent 28%),
+          linear-gradient(180deg, #f7f2ea 0%, #eee4d4 52%, #e1d4c2 100%);
+      }
+
+      main {
+        width: min(840px, calc(100vw - 40px));
+        margin: 48px auto;
+        padding: 28px;
+        border: 1px solid var(--line);
+        border-radius: 28px;
+        background: var(--panel);
+        backdrop-filter: blur(14px);
+        box-shadow: 0 24px 60px rgba(45, 34, 20, 0.14);
+      }
+
+      h1 {
+        margin: 0 0 8px;
+        font-size: clamp(1.8rem, 3vw, 2.5rem);
+        line-height: 1.05;
+      }
+
+      p {
+        margin: 0 0 18px;
+        color: var(--muted);
+        line-height: 1.55;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 28px 0 0;
+        display: grid;
+        gap: 14px;
+      }
+
+      li {
+        border: 1px solid var(--line);
+        border-radius: 18px;
+        overflow: hidden;
+        background: rgba(255, 255, 255, 0.5);
+      }
+
+      a {
+        display: block;
+        padding: 18px 20px;
+        color: inherit;
+        text-decoration: none;
+      }
+
+      a:hover {
+        background: rgba(127, 42, 29, 0.06);
+      }
+
+      strong {
+        display: block;
+        margin-bottom: 4px;
+        font-size: 1.03rem;
+      }
+
+      .eyebrow {
+        display: inline-block;
+        margin-bottom: 12px;
+        font-size: 0.76rem;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+        color: var(--accent);
+      }
+
+      .note {
+        margin-top: 28px;
+        font-size: 0.92rem;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <div class="eyebrow">Form Gallery Sandbox</div>
+      <h1>Smithsonian Trio Preview</h1>
+      <p>Direct sandbox routes for the newly added Smithsonian pieces. These pages boot the shared museum viewer by piece id so you can review them online before the canonical route deployment finishes.</p>
+      <ul>
+        <li>
+          <a href="./toussaint-louverture-et-la-vieille-esclave/">
+            <strong>Toussaint Louverture et la vieille esclave</strong>
+            Ousmane Sow, 1989
+          </a>
+        </li>
+        <li>
+          <a href="./19th-century-kid-queen-victoria/">
+            <strong>19th Century Kid (Queen Victoria)</strong>
+            Yinka Shonibare, 1999
+          </a>
+        </li>
+        <li>
+          <a href="./life-cast-left-forearm-and-hand/">
+            <strong>Life Cast of Left Forearm and Hand</strong>
+            Studio of Hiram Powers, ca. 1843
+          </a>
+        </li>
+      </ul>
+      <p class="note">While `formgallery.org` HTTPS is still misconfigured, use the `http://` version of these sandbox URLs.</p>
+    </main>
+  </body>
+</html>

@@ -1,0 +1,847 @@
+:root {
+  --bg-0: #02050b;
+  --bg-1: rgba(7, 13, 20, 0.68);
+  --bg-2: rgba(11, 20, 32, 0.84);
+  --bg-3: rgba(10, 18, 29, 0.48);
+  --panel-edge: rgba(122, 198, 245, 0.18);
+  --panel-soft: rgba(255, 255, 255, 0.04);
+  --text-0: #f4f7fb;
+  --text-1: rgba(231, 240, 252, 0.78);
+  --text-2: rgba(200, 216, 235, 0.56);
+  --cyan: #82ebff;
+  --cyan-soft: rgba(130, 235, 255, 0.16);
+  --amber: #ff9a3d;
+  --amber-soft: rgba(255, 154, 61, 0.16);
+  --shadow: 0 16px 54px rgba(0, 0, 0, 0.3);
+  --radius-l: 1.18rem;
+  --radius-m: 0.92rem;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 15% 18%, rgba(26, 58, 90, 0.16), transparent 28%),
+    radial-gradient(circle at 88% 20%, rgba(255, 154, 61, 0.08), transparent 32%),
+    linear-gradient(180deg, #02050b 0%, #040911 48%, #07111c 100%);
+  color: var(--text-0);
+  font-family: "Avenir Next", "Segoe UI", sans-serif;
+}
+
+body {
+  position: relative;
+}
+
+body::before,
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 4.5rem 4.5rem;
+  mask-image: radial-gradient(circle at center, black 38%, transparent 100%);
+}
+
+body::after {
+  background:
+    radial-gradient(circle at center, rgba(130, 235, 255, 0.06), transparent 38%),
+    radial-gradient(circle at 68% 26%, rgba(255, 154, 61, 0.06), transparent 30%);
+}
+
+#scene {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.hud {
+  position: fixed;
+  top: 0.85rem;
+  left: 0.85rem;
+  z-index: 2;
+  display: grid;
+  gap: 0.62rem;
+  width: min(22rem, calc(100vw - 1.7rem));
+  max-height: calc(100vh - 1.7rem);
+  overflow: auto;
+  padding-right: 0.18rem;
+  pointer-events: none;
+  transition:
+    width 220ms ease,
+    gap 220ms ease,
+    opacity 220ms ease;
+}
+
+.hud::-webkit-scrollbar {
+  width: 0.45rem;
+}
+
+.hud::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.12);
+  border-radius: 999px;
+}
+
+.cluster {
+  position: relative;
+  overflow: hidden;
+  padding: 0.84rem 0.88rem 0.9rem;
+  border: 1px solid var(--panel-edge);
+  border-radius: var(--radius-l);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.035), rgba(255, 255, 255, 0.012)),
+    linear-gradient(135deg, rgba(130, 235, 255, 0.045), transparent 44%),
+    linear-gradient(315deg, rgba(255, 154, 61, 0.04), transparent 30%),
+    var(--bg-1);
+  backdrop-filter: blur(20px);
+  box-shadow: var(--shadow);
+  pointer-events: auto;
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease,
+    border-color 220ms ease,
+    background 220ms ease;
+}
+
+.cluster::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  background:
+    linear-gradient(180deg, rgba(130, 235, 255, 0.08), transparent 16%),
+    linear-gradient(0deg, rgba(255, 154, 61, 0.05), transparent 22%);
+  opacity: 0.85;
+}
+
+.overview {
+  padding-bottom: 0.82rem;
+}
+
+.identity,
+.mode-strip,
+.phase-track,
+.hint,
+.section-head,
+.progress-stack,
+.telemetry-grid,
+.control {
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow,
+.kicker {
+  margin: 0;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--text-2);
+  font-size: 0.67rem;
+  font-weight: 600;
+}
+
+.identity-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.72rem;
+  align-items: flex-start;
+  margin-top: 0.42rem;
+}
+
+h1,
+h2 {
+  margin: 0;
+  font-family: "Avenir Next Condensed", "Arial Narrow", sans-serif;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  line-height: 0.94;
+}
+
+h1 {
+  font-size: clamp(1.9rem, 4.8vw, 3.1rem);
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+h2 {
+  font-size: 1.14rem;
+}
+
+.lede {
+  margin: 0.44rem 0 0;
+  color: var(--text-1);
+  font-size: 0.85rem;
+  line-height: 1.42;
+  max-width: 13.5rem;
+}
+
+.phase-chip {
+  min-width: 5.2rem;
+  padding: 0.46rem 0.56rem 0.5rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: var(--radius-m);
+  background:
+    linear-gradient(135deg, rgba(130, 235, 255, 0.08), rgba(255, 154, 61, 0.08)),
+    rgba(255, 255, 255, 0.03);
+  text-align: left;
+}
+
+.phase-chip span {
+  display: block;
+  margin-bottom: 0.22rem;
+  color: var(--text-2);
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.phase-chip strong {
+  display: block;
+  color: var(--text-0);
+  font-size: 0.92rem;
+  letter-spacing: 0.03em;
+}
+
+.mode-strip {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 0.56rem;
+  margin-top: 0.78rem;
+}
+
+.segmented,
+.action-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+}
+
+button {
+  appearance: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  padding: 0.62rem 0.9rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)),
+    rgba(7, 13, 20, 0.76);
+  color: var(--text-0);
+  font: inherit;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    box-shadow 180ms ease,
+    opacity 180ms ease;
+}
+
+button:hover,
+button:focus-visible {
+  transform: translateY(-1px);
+  border-color: rgba(130, 235, 255, 0.28);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+  outline: none;
+}
+
+.mode-button {
+  min-width: 5rem;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
+    rgba(6, 12, 20, 0.78);
+}
+
+.mode-button.is-active,
+.mode-button[aria-pressed="true"] {
+  border-color: rgba(130, 235, 255, 0.34);
+  background:
+    linear-gradient(135deg, rgba(130, 235, 255, 0.18), rgba(255, 154, 61, 0.12)),
+    rgba(13, 24, 36, 0.9);
+}
+
+.action-button {
+  color: var(--text-1);
+}
+
+.phase-track {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.4rem;
+  list-style: none;
+  margin: 0.78rem 0 0;
+  padding: 0;
+}
+
+.phase-track li {
+  padding: 0.4rem 0.44rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 999px;
+  color: var(--text-2);
+  font-size: 0.7rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.phase-track li.is-complete {
+  color: var(--text-1);
+  border-color: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.05);
+}
+
+.phase-track li.is-active {
+  color: var(--text-0);
+  border-color: rgba(130, 235, 255, 0.3);
+  background:
+    linear-gradient(135deg, rgba(130, 235, 255, 0.15), rgba(255, 154, 61, 0.1)),
+    rgba(255, 255, 255, 0.04);
+  transform: translateY(-1px);
+}
+
+.hint {
+  margin: 0.72rem 0 0;
+  color: var(--text-2);
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.hint span {
+  display: inline-block;
+  margin: 0 0.12rem;
+  padding: 0.08rem 0.38rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.045);
+  color: var(--amber);
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.64rem;
+  align-items: flex-end;
+}
+
+.section-head p {
+  margin: 0;
+  max-width: 8.8rem;
+  color: var(--text-2);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  text-align: right;
+}
+
+.controls-panel,
+.telemetry-panel {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.026), rgba(255, 255, 255, 0.01)),
+    linear-gradient(135deg, rgba(130, 235, 255, 0.035), transparent 48%),
+    linear-gradient(315deg, rgba(255, 154, 61, 0.03), transparent 34%),
+    var(--bg-3);
+  transform-origin: top left;
+}
+
+.control {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.42rem 0.7rem;
+  align-items: center;
+  margin-top: 0.8rem;
+}
+
+.control span {
+  color: var(--text-0);
+  font-size: 0.84rem;
+}
+
+.control output {
+  color: rgba(255, 225, 185, 0.88);
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.control input[type="range"] {
+  -webkit-appearance: none;
+  appearance: none;
+  grid-column: 1 / -1;
+  width: 100%;
+  height: 1.2rem;
+  background: transparent;
+}
+
+.control input[type="range"]::-webkit-slider-runnable-track {
+  height: 0.2rem;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgba(130, 235, 255, 0.7), rgba(255, 154, 61, 0.7)),
+    rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.control input[type="range"]::-moz-range-track {
+  height: 0.2rem;
+  border-radius: 999px;
+  background:
+    linear-gradient(90deg, rgba(130, 235, 255, 0.7), rgba(255, 154, 61, 0.7)),
+    rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.06);
+}
+
+.control input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0.92rem;
+  height: 0.92rem;
+  margin-top: -0.36rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.92), rgba(130, 235, 255, 0.9)),
+    rgba(130, 235, 255, 0.9);
+  box-shadow:
+    0 0 0 0.18rem rgba(130, 235, 255, 0.08),
+    0 0 22px rgba(130, 235, 255, 0.22);
+}
+
+.control input[type="range"]::-moz-range-thumb {
+  width: 0.92rem;
+  height: 0.92rem;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.92), rgba(130, 235, 255, 0.9)),
+    rgba(130, 235, 255, 0.9);
+  box-shadow:
+    0 0 0 0.18rem rgba(130, 235, 255, 0.08),
+    0 0 22px rgba(130, 235, 255, 0.22);
+}
+
+.progress-stack {
+  margin-top: 0.82rem;
+}
+
+.progress-labels {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: center;
+  color: var(--text-1);
+  font-size: 0.82rem;
+}
+
+.progress-labels output {
+  color: var(--text-0);
+  font-variant-numeric: tabular-nums;
+}
+
+.progress-bar {
+  overflow: hidden;
+  height: 0.34rem;
+  margin-top: 0.45rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.progress-bar span {
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-origin: left center;
+  transform: scaleX(0);
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--cyan), rgba(255, 255, 255, 0.95), var(--amber));
+  box-shadow: 0 0 16px rgba(130, 235, 255, 0.26);
+}
+
+.telemetry-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.58rem;
+  margin: 0.82rem 0 0;
+}
+
+.telemetry-grid div {
+  padding: 0.62rem 0.66rem;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: var(--radius-m);
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.01)),
+    rgba(255, 255, 255, 0.01);
+}
+
+.telemetry-grid dt {
+  margin-bottom: 0.34rem;
+  color: var(--text-2);
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.telemetry-grid dd {
+  margin: 0;
+  color: var(--text-0);
+  font-size: 0.92rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.hud[data-mode="transit"] .controls-panel,
+.hud[data-mode="transit"] .telemetry-panel {
+  opacity: 0.52;
+  transform: translateX(-0.14rem) scale(0.985);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 10px 34px rgba(0, 0, 0, 0.22);
+}
+
+.hud[data-mode="transit"] .controls-panel:hover,
+.hud[data-mode="transit"] .controls-panel:focus-within,
+.hud[data-mode="transit"] .telemetry-panel:hover,
+.hud[data-mode="transit"] .telemetry-panel:focus-within {
+  opacity: 1;
+  transform: translateX(0) scale(1);
+}
+
+.hud[data-mode="transit"][data-phase="entry"] .controls-panel,
+.hud[data-mode="transit"][data-phase="entry"] .telemetry-panel,
+.hud[data-mode="transit"][data-phase="transit"] .controls-panel,
+.hud[data-mode="transit"][data-phase="transit"] .telemetry-panel {
+  opacity: 0.34;
+  transform: translateX(-0.22rem) scale(0.97);
+}
+
+.hud[data-mode="transit"] .overview {
+  transition:
+    opacity 220ms ease,
+    transform 220ms ease,
+    background 220ms ease;
+}
+
+.hud[data-mode="transit"][data-phase="entry"] .overview,
+.hud[data-mode="transit"][data-phase="transit"] .overview {
+  opacity: 0.74;
+}
+
+.hud[data-mode="transit"][data-focus="scene"] .hint,
+.hud[data-mode="transit"][data-focus="scene"] .section-head p {
+  opacity: 0.34;
+}
+
+.hud[data-mode="transit"][data-phase="transit"] .hint {
+  opacity: 0.22;
+}
+
+.hud[data-mode="transit"][data-phase="transit"] .telemetry-grid div,
+.hud[data-mode="transit"][data-phase="entry"] .telemetry-grid div {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.018), rgba(255, 255, 255, 0.008)),
+    rgba(255, 255, 255, 0.008);
+}
+
+.hud[data-phase="transit"] .overview,
+.hud[data-phase="exit"] .overview {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.028), rgba(255, 255, 255, 0.01)),
+    linear-gradient(135deg, rgba(130, 235, 255, 0.03), transparent 50%),
+    linear-gradient(315deg, rgba(255, 154, 61, 0.026), transparent 32%),
+    rgba(5, 10, 18, 0.56);
+}
+
+.hud[data-mode="transit"][data-focus="scene"] {
+  width: min(17rem, calc(100vw - 1.7rem));
+  gap: 0;
+  overflow: visible;
+}
+
+.hud[data-mode="transit"][data-focus="scene"] .overview {
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.02), rgba(255, 255, 255, 0.008)),
+    linear-gradient(135deg, rgba(130, 235, 255, 0.022), transparent 52%),
+    linear-gradient(315deg, rgba(255, 154, 61, 0.02), transparent 36%),
+    rgba(5, 10, 18, 0.42);
+  box-shadow: 0 12px 38px rgba(0, 0, 0, 0.2);
+}
+
+.hud[data-mode="transit"][data-focus="scene"] .action-strip,
+.hud[data-mode="transit"][data-focus="scene"] .phase-track,
+.hud[data-mode="transit"][data-focus="scene"] .hint {
+  display: none;
+}
+
+.hud[data-mode="transit"][data-focus="scene"] .mode-strip {
+  margin-top: 0.58rem;
+}
+
+.hud[data-mode="transit"][data-focus="scene"] .controls-panel,
+.hud[data-mode="transit"][data-focus="scene"] .telemetry-panel {
+  display: none;
+}
+
+@media (max-width: 820px) {
+  .hud {
+    top: 0.64rem;
+    left: 0.64rem;
+    width: min(21rem, calc(100vw - 1.28rem));
+    max-height: calc(100vh - 1.4rem);
+  }
+
+  .hud[data-mode="transit"][data-focus="scene"] {
+    width: min(15.75rem, calc(100vw - 1.28rem));
+  }
+
+  .identity-row,
+  .section-head {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .section-head p {
+    max-width: none;
+    text-align: left;
+  }
+}
+
+@media (max-width: 620px) {
+  .hud {
+    gap: 0.5rem;
+    width: calc(100vw - 0.85rem);
+    top: 0.42rem;
+    left: 0.42rem;
+    max-height: calc(100vh - 0.84rem);
+  }
+
+  .hud[data-mode="transit"][data-focus="scene"] {
+    width: min(14.1rem, calc(100vw - 0.85rem));
+  }
+
+  .cluster {
+    padding: 0.74rem 0.78rem 0.8rem;
+  }
+
+  .overview {
+    padding-bottom: 0.72rem;
+  }
+
+  .identity-row {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 0.56rem;
+    margin-top: 0.34rem;
+  }
+
+  .identity-row > div:first-child {
+    min-width: 0;
+  }
+
+  h1 {
+    font-size: clamp(1.52rem, 8.7vw, 2.26rem);
+    white-space: normal;
+    max-width: 7.6ch;
+    line-height: 0.92;
+  }
+
+  .eyebrow,
+  .kicker {
+    font-size: 0.62rem;
+  }
+
+  h2 {
+    font-size: 1.03rem;
+  }
+
+  .lede {
+    margin-top: 0.32rem;
+    max-width: 10.8rem;
+    font-size: 0.76rem;
+    line-height: 1.34;
+  }
+
+  .phase-chip {
+    min-width: 4.65rem;
+    padding: 0.38rem 0.46rem 0.42rem;
+  }
+
+  .phase-chip span {
+    margin-bottom: 0.16rem;
+    font-size: 0.62rem;
+  }
+
+  .phase-chip strong {
+    font-size: 0.82rem;
+  }
+
+  .mode-strip {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.42rem;
+    margin-top: 0.66rem;
+  }
+
+  .segmented,
+  .action-strip {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.42rem;
+  }
+
+  .segmented button,
+  .action-strip button {
+    width: 100%;
+  }
+
+  button {
+    padding: 0.56rem 0.68rem;
+    font-size: 0.84rem;
+  }
+
+  .phase-track {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.34rem;
+    margin-top: 0.66rem;
+  }
+
+  .phase-track li {
+    padding: 0.35rem 0.36rem;
+    font-size: 0.66rem;
+  }
+
+  .lede {
+    max-width: 10.8rem;
+  }
+
+  .hint {
+    margin-top: 0.56rem;
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+
+  .hint span {
+    margin: 0 0.08rem;
+    padding: 0.06rem 0.32rem;
+  }
+
+  .section-head {
+    gap: 0.46rem;
+  }
+
+  .section-head p {
+    font-size: 0.68rem;
+    line-height: 1.32;
+  }
+
+  .control {
+    gap: 0.36rem 0.58rem;
+    margin-top: 0.7rem;
+  }
+
+  .control span,
+  .control output,
+  .progress-labels {
+    font-size: 0.78rem;
+  }
+
+  .control input[type="range"]::-webkit-slider-thumb,
+  .control input[type="range"]::-moz-range-thumb {
+    width: 0.86rem;
+    height: 0.86rem;
+  }
+
+  .progress-stack {
+    margin-top: 0.7rem;
+  }
+
+  .telemetry-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.44rem;
+    margin-top: 0.7rem;
+  }
+
+  .telemetry-grid div {
+    padding: 0.52rem 0.56rem;
+  }
+
+  .telemetry-grid dt {
+    margin-bottom: 0.26rem;
+    font-size: 0.62rem;
+  }
+
+  .telemetry-grid dd {
+    font-size: 0.82rem;
+  }
+
+  .hud[data-mode="transit"] .controls-panel,
+  .hud[data-mode="transit"] .telemetry-panel {
+    opacity: 0.44;
+  }
+}
+
+@media (max-width: 420px) {
+  .hud {
+    gap: 0.44rem;
+    width: calc(100vw - 0.5rem);
+    top: 0.25rem;
+    left: 0.25rem;
+    max-height: calc(100vh - 0.5rem);
+  }
+
+  .hud[data-mode="transit"][data-focus="scene"] {
+    width: min(13.3rem, calc(100vw - 0.5rem));
+  }
+
+  .cluster {
+    padding: 0.66rem 0.68rem 0.72rem;
+  }
+
+  .identity-row {
+    gap: 0.44rem;
+  }
+
+  h1 {
+    font-size: clamp(1.4rem, 8vw, 1.94rem);
+    max-width: 7ch;
+  }
+
+  .lede {
+    max-width: 9.8rem;
+    font-size: 0.72rem;
+  }
+
+  .phase-chip {
+    min-width: 4.35rem;
+    padding-inline: 0.42rem;
+  }
+
+  button {
+    min-height: 2.2rem;
+    padding: 0.5rem 0.56rem;
+    font-size: 0.8rem;
+  }
+
+  .hint {
+    font-size: 0.69rem;
+  }
+
+  .telemetry-grid dd {
+    font-size: 0.78rem;
+  }
+}

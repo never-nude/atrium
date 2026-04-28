@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en" data-theme="dark" style="color-scheme: dark;">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Cinematic first-person wormhole transit simulator built with Three.js."
+    />
+    <title>Wormhole</title>
+    <base href="./" />
+    <link rel="stylesheet" href="./styles.css" />
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "./vendor/three/build/three.module.js",
+          "three/addons/": "./vendor/three/examples/jsm/"
+        }
+      }
+    </script>
+  </head>
+  <body>
+    <canvas id="scene" aria-label="Interactive 3D wormhole simulation"></canvas>
+
+    <aside class="hud" data-mode="transit" data-phase="approach">
+      <section class="cluster overview">
+        <div class="identity">
+          <p class="eyebrow">Spacetime Transit Visualization</p>
+
+          <div class="identity-row">
+            <div>
+              <h1>Wormhole</h1>
+              <p class="lede">First-person transit through a stabilized wormhole throat.</p>
+            </div>
+
+            <div class="phase-chip" aria-live="polite">
+              <span>Phase</span>
+              <strong id="phaseBadge">Approach</strong>
+            </div>
+          </div>
+        </div>
+
+        <div class="mode-strip">
+          <div class="segmented" role="group" aria-label="View mode">
+            <button id="inspectButton" type="button" class="mode-button" aria-pressed="false">
+              Inspect
+            </button>
+            <button id="transitButton" type="button" class="mode-button" aria-pressed="true">
+              Transit
+            </button>
+          </div>
+
+          <div class="action-strip">
+            <button id="replayButton" type="button" class="action-button">Replay Transit</button>
+            <button id="pulseButton" type="button" class="action-button">Field Pulse</button>
+          </div>
+        </div>
+
+        <ol class="phase-track" aria-label="Transit phases">
+          <li data-phase-item="approach">Approach</li>
+          <li data-phase-item="entry">Entry</li>
+          <li data-phase-item="transit">Transit</li>
+          <li data-phase-item="exit">Exit</li>
+        </ol>
+
+        <p class="hint">
+          Inspect to orbit. Transit runs automatically. <span>Shift</span> sends a field pulse.
+        </p>
+      </section>
+
+      <section class="cluster controls-panel">
+        <header class="section-head">
+          <div>
+            <p class="kicker">Field Controls</p>
+            <h2>Traversal tuning</h2>
+          </div>
+          <p>Direct scene-linked tuning.</p>
+        </header>
+
+        <label class="control">
+          <span>Transit Speed</span>
+          <output id="speedValue" for="speedInput">1.08x</output>
+          <input id="speedInput" type="range" min="0.4" max="1.6" step="0.01" value="1.08" />
+        </label>
+
+        <label class="control">
+          <span>Throat Radius</span>
+          <output id="throatValue" for="throatInput">7.8m</output>
+          <input id="throatInput" type="range" min="5.5" max="13.5" step="0.1" value="7.8" />
+        </label>
+
+        <label class="control">
+          <span>Distortion</span>
+          <output id="distortionValue" for="distortionInput">0.56</output>
+          <input
+            id="distortionInput"
+            type="range"
+            min="0.15"
+            max="1.4"
+            step="0.01"
+            value="0.56"
+          />
+        </label>
+
+        <label class="control">
+          <span>Glow</span>
+          <output id="glowValue" for="glowInput">1.04</output>
+          <input id="glowInput" type="range" min="0.65" max="1.6" step="0.01" value="1.04" />
+        </label>
+
+        <label class="control">
+          <span>Exit Bloom</span>
+          <output id="bloomValue" for="bloomInput">0.84</output>
+          <input id="bloomInput" type="range" min="0.4" max="1.6" step="0.01" value="0.84" />
+        </label>
+      </section>
+
+      <section class="cluster telemetry-panel">
+        <header class="section-head telemetry-head">
+          <div>
+            <p class="kicker">Live Telemetry</p>
+            <h2>Traversal state</h2>
+          </div>
+          <p>Live runtime-linked readouts.</p>
+        </header>
+
+        <div class="progress-stack">
+          <div class="progress-labels">
+            <span>Transit Progress</span>
+            <output id="progressValue">0%</output>
+          </div>
+          <div class="progress-bar" aria-hidden="true">
+            <span id="progressFill"></span>
+          </div>
+        </div>
+
+        <dl class="telemetry-grid">
+          <div>
+            <dt>Mode</dt>
+            <dd id="modeReading">Transit</dd>
+          </div>
+          <div>
+            <dt>Velocity Index</dt>
+            <dd id="velocityReading">0.00x</dd>
+          </div>
+          <div>
+            <dt>Shear</dt>
+            <dd id="shearReading">0.00</dd>
+          </div>
+          <div>
+            <dt>Aperture Stability</dt>
+            <dd id="stabilityReading">100%</dd>
+          </div>
+          <div>
+            <dt>Bloom Gain</dt>
+            <dd id="bloomReading">1.00x</dd>
+          </div>
+          <div>
+            <dt>Exit Lock</dt>
+            <dd id="exitReading">0%</dd>
+          </div>
+          <div>
+            <dt>Traversal Time</dt>
+            <dd id="durationReading">0.0 s</dd>
+          </div>
+          <div>
+            <dt>Phase</dt>
+            <dd id="phaseReading">Approach</dd>
+          </div>
+        </dl>
+      </section>
+    </aside>
+
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>

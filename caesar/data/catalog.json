@@ -1,0 +1,70 @@
+{
+  "name": "CAESAR Human Scans",
+  "subtitle": "Real Human Body Scan Samples",
+  "version": 1,
+  "generatedAt": "2026-03-16",
+  "items": [
+    {
+      "id": "male-anatomy-study",
+      "title": "Male Human Scan Study",
+      "artist": "CAESAR 3-D Anthropometric Database",
+      "year": "Contemporary scan sample",
+      "origin": "Real human subject",
+      "style": "Anthropometric body scan",
+      "description": "A filled and wireframe viewer study based on the official CAESAR low-resolution male sample mesh.",
+      "tags": [
+        "male human scan",
+        "real person",
+        "wireframe"
+      ],
+      "dataUrl": "./data/models/male_human_scan_mesh.json",
+      "format": "tri_mesh",
+      "nodeCount": 5045,
+      "triangleCount": 10086,
+      "edgeCount": 30258,
+      "sourceTriangleCount": 10086,
+      "renderStyle": "human-scan",
+      "defaultWireframe": false,
+      "palette": {
+        "background": "#eadccf",
+        "surface": "#cca18a",
+        "surfaceWarm": "#deb7a1",
+        "surfaceCool": "#a88780",
+        "surfaceShadow": "#826760",
+        "edge": "#6d8a98",
+        "node": "#e7b27f"
+      }
+    },
+    {
+      "id": "female-anatomy-study",
+      "title": "Female Human Scan Study",
+      "artist": "CAESAR 3-D Anthropometric Database",
+      "year": "Contemporary scan sample",
+      "origin": "Real human subject",
+      "style": "Anthropometric body scan",
+      "description": "A filled and wireframe viewer study based on the official CAESAR low-resolution female sample mesh.",
+      "tags": [
+        "female human scan",
+        "real person",
+        "wireframe"
+      ],
+      "dataUrl": "./data/models/female_human_scan_mesh.json",
+      "format": "tri_mesh",
+      "nodeCount": 5070,
+      "triangleCount": 10136,
+      "edgeCount": 30408,
+      "sourceTriangleCount": 10136,
+      "renderStyle": "human-scan",
+      "defaultWireframe": false,
+      "palette": {
+        "background": "#efe1d8",
+        "surface": "#d4ad9a",
+        "surfaceWarm": "#e6c3b3",
+        "surfaceCool": "#af918c",
+        "surfaceShadow": "#8a706a",
+        "edge": "#7e86ae",
+        "node": "#ebb48f"
+      }
+    }
+  ]
+}

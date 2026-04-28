@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en" data-theme="dark" style="color-scheme: dark;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>CAESAR Human Scans</title>
+    <meta
+      name="description"
+      content="Interactive CAESAR human scan viewer with filled and wireframe render modes."
+    />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <div class="app">
+      <section class="panel" aria-label="Viewer controls">
+        <h1 id="pieceTitle" class="title">CAESAR Human Scans</h1>
+        <p id="stats" class="sub">Loading CAESAR scan catalog...</p>
+
+        <div class="grid">
+          <div class="control control-wide">
+            <label for="workSelect">Scan</label>
+            <select id="workSelect" aria-label="Human scan selector">
+              <option value="">Loading...</option>
+            </select>
+          </div>
+          <div class="control">
+            <label for="spin">Spin</label>
+            <input id="spin" type="range" min="0" max="1.6" step="0.01" value="0.12" />
+            <output id="spinv">0.12</output>
+          </div>
+          <div class="control">
+            <label for="zoom">Zoom</label>
+            <input id="zoom" type="range" min="1.2" max="6.4" step="0.01" value="2.70" />
+            <output id="zoomv">2.70</output>
+          </div>
+          <div class="control">
+            <label for="lightAngle">Key Angle</label>
+            <input id="lightAngle" type="range" min="-180" max="180" step="1" value="34" />
+            <output id="lightAnglev">34.00</output>
+          </div>
+          <div class="control">
+            <label for="lightPower">Light Power</label>
+            <input id="lightPower" type="range" min="0.2" max="4.5" step="0.01" value="2.20" />
+            <output id="lightPowerv">2.20</output>
+          </div>
+          <div class="control">
+            <label for="exposure">Exposure</label>
+            <input id="exposure" type="range" min="0" max="2.8" step="0.01" value="0.39" />
+            <output id="exposurev">0.39</output>
+          </div>
+          <div class="control">
+            <label for="rough">Roughness</label>
+            <input id="rough" type="range" min="0.2" max="1" step="0.01" value="0.58" />
+            <output id="roughv">0.58</output>
+          </div>
+        </div>
+
+        <div class="row">
+          <label><input id="canManipulate" type="checkbox" checked /> Manipulate</label>
+          <label><input id="autoRotate" type="checkbox" checked /> Auto Rotate</label>
+          <label><input id="multiLight" type="checkbox" checked /> Multi-Light</label>
+          <label><input id="wire" type="checkbox" /> Wireframe</label>
+          <button id="frontBtn" class="btn" type="button">Front</button>
+          <button id="resetBtn" class="btn" type="button">Reset</button>
+          <a class="btn btn-link" href="/">Home</a>
+          <span>Drag to rotate. Scroll/pinch to zoom. Shift+drag to pan.</span>
+        </div>
+      </section>
+
+      <section id="stage" aria-label="CAESAR scan viewer stage">
+        <canvas id="viewerCanvas" aria-label="3D human scan viewer"></canvas>
+        <div id="viewerMessage" class="viewer-message">Loading...</div>
+      </section>
+    </div>
+
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>

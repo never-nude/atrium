@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en" data-theme="dark" style="color-scheme: dark;">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+    <title>House model — Form Gallery</title>
+    <script>
+      window.FORM_GALLERY_BASE_PATH = window.location.pathname === "/atrium" || window.location.pathname.startsWith("/atrium/") ? "/atrium" : "";
+      document.write('<link rel="stylesheet" href="' + window.FORM_GALLERY_BASE_PATH + '/museum/shared/museum.css?v=20260428-1950">');
+    </script>
+  </head>
+  <body>
+    <noscript>
+      <p style="margin:16px;font-family:IBM Plex Sans, Avenir Next, sans-serif;color:#2f2a22;">The museum viewer requires JavaScript.</p>
+    </noscript>
+    <script type="module">
+      const basePath = window.FORM_GALLERY_BASE_PATH || "";
+      const { initMuseumPageForCurrentPath } = await import(basePath + "/museum/shared/page.js?v=20260428-1950");
+      initMuseumPageForCurrentPath();
+    </script>
+  </body>
+</html>
