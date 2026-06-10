@@ -1,4 +1,5 @@
 import { metBatchPieces } from "./met-batch-20260329.js";
+import { provenanceConfidenceById } from "./provenance-confidence.js";
 
 function link(label, url) {
   return { label, url };
@@ -5893,3 +5894,9 @@ export const museumPiecesExtension = {
   },
   ...metBatchPieces
 };
+
+for (const [pieceId, provenanceConfidence] of Object.entries(provenanceConfidenceById)) {
+  if (museumPiecesExtension[pieceId]) {
+    museumPiecesExtension[pieceId].provenanceConfidence = provenanceConfidence;
+  }
+}

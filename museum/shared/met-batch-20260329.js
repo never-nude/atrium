@@ -1,3 +1,5 @@
+import { provenanceConfidenceById } from "./provenance-confidence.js";
+
 function link(label, url) {
   return { label, url };
 }
@@ -1468,3 +1470,9 @@ export const metBatchPieces = {
     scene: MET_SCENE_PRESETS.figure
   },
 };
+
+for (const [pieceId, provenanceConfidence] of Object.entries(provenanceConfidenceById)) {
+  if (metBatchPieces[pieceId]) {
+    metBatchPieces[pieceId].provenanceConfidence = provenanceConfidence;
+  }
+}
