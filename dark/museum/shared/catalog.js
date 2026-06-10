@@ -1,3 +1,5 @@
+import { provenanceConfidenceById } from "./provenance-confidence.js";
+
 function link(label, url) {
   return { label, url };
 }
@@ -1022,13 +1024,17 @@ export const museumPieces = {
     sortOrder: 40,
     viewerTitle: "David (1501-1504)",
     subtitle: MICHELANGELO_SUBTITLE,
-    lobbyMeta: "Source: local mirrored STL; Accademia reference",
+    lobbyMeta: "Source: Wikimedia Commons / Scan the World STL",
+    scan_source: "Scan the World / Wikimedia Commons",
+    license: "CC BY-SA 4.0",
     source: source(
-      "This route currently uses a mirrored local STL for the viewer.",
+      "Local STL mirrored from the Wikimedia Commons Scan the World file for Michelangelo's David.",
       [
+        link("Wikimedia Commons file", "https://commons.wikimedia.org/wiki/File:David_(Michelangelo).stl"),
+        link("Direct STL", "https://upload.wikimedia.org/wikipedia/commons/4/4d/David_%28Michelangelo%29.stl"),
         link("Galleria dell'Accademia reference", "https://www.galleriaaccademiafirenze.it/opere/david-michelangelo/")
       ],
-      "The exact public mesh source for the mirrored STL has not yet been reattached in the museum catalog."
+      "Audit confirmed the local file by SHA256 and byte size against the Commons direct STL. The Commons file credits Scan the World and lists CC BY-SA 4.0."
     ),
     defaults: {
       zoom: 2.7
@@ -1382,13 +1388,17 @@ export const museumPieces = {
     sortOrder: 10,
     viewerTitle: "Cupid Cutting His Bow from the Club of Hercules (c. 1747-1750)",
     subtitle: "Artist: Edme Bouchardon (1698-1762)",
-    lobbyMeta: "Source: local mirrored STL; Louvre reference",
+    lobbyMeta: "Source: Scan The World / MyMiniFactory (probable)",
+    scan_source: "Scan The World / MyMiniFactory",
+    license: "unknown",
     source: source(
-      "This route currently uses a mirrored local STL of Bouchardon's sculpture.",
+      "Local STL is a probable mirror of Scan The World's MyMiniFactory model for Bouchardon's Cupid cutting his bow from the club of Hercules.",
       [
+        link("MyMiniFactory source page", "https://www.myminifactory.com/object/3d-print-cupid-cutting-his-bow-from-the-club-of-hercules-at-the-louvre-paris-6760"),
+        link("Wayback source capture", "https://web.archive.org/web/20211025114740/https://www.myminifactory.com/object/3d-print-cupid-cutting-his-bow-from-the-club-of-hercules-at-the-louvre-paris-6760"),
         link("Louvre work reference", "https://collections.louvre.fr/en/ark:/53355/cl010091965")
       ],
-      "The exact public mesh source for the mirrored STL predates this audit and is still being reconciled."
+      "Audit evidence: the archived source page names Scan The World and a single object part named louvre-cupid-cutting-his-bow-from-the-club-of-hercules-decimated-1.stl. No direct download/hash match was available, so confidence is probable."
     ),
     defaults: {
       zoom: 2.7
@@ -1444,6 +1454,12 @@ export const museumPieces = {
     }
   }
 };
+
+for (const [pieceId, provenanceConfidence] of Object.entries(provenanceConfidenceById)) {
+  if (museumPieces[pieceId]) {
+    museumPieces[pieceId].provenanceConfidence = provenanceConfidence;
+  }
+}
 
 function sectionItems(sectionId) {
   return Object.entries(museumPieces)
