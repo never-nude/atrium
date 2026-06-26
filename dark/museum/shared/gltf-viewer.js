@@ -1,6 +1,7 @@
 import { createViewerDefaults, renderViewerShell } from "./viewer-shell.js";
 import { createPedestalMesh, inferPedestalEnabled, resolveObjectPedestalRadius, resolvePedestalHeight } from "./pedestal.js";
 import { getActiveTheme, getViewerThemePalette } from "./theme.js";
+import { WIREMESH_COLOR } from "./viewer-colors.js";
 
 const DEFAULT_PRIMARY_TIMEOUT_MS = 45000;
 const DEFAULT_FALLBACK_TIMEOUT_MS = 30000;
@@ -9,7 +10,6 @@ const DEFAULT_MODEL_YAW = 0;
 const DEFAULT_PRIMARY_LOADING_TEXT = "Loading high-fidelity source model...";
 const DEFAULT_FALLBACK_LOADING_TEXT = "Loading optimized source model...";
 const DEFAULT_SWITCH_LOADING_TEXT = "Primary source unavailable; switching to fallback model...";
-
 let threeModulesPromise = null;
 
 function getThreeModules() {
@@ -407,7 +407,8 @@ export async function initGltfMuseumPage(piece) {
       trackedMaterials.push({
         material,
         roughness: typeof material.roughness === "number" ? material.roughness : null,
-        wireframe: !!material.wireframe
+        wireframe: !!material.wireframe,
+        color: material.color?.clone?.() || null
       });
     }
 
@@ -591,11 +592,15 @@ export async function initGltfMuseumPage(piece) {
       renderer.toneMappingExposure = ui.n("exposure");
 
       for (const entry of trackedMaterials) {
-        const { material, roughness, wireframe } = entry;
+        const { material, roughness, wireframe, color } = entry;
         if (roughness !== null) {
           material.roughness = Math.max(0, Math.min(1, roughnessValue));
         }
-        material.wireframe = document.getElementById("wire").checked ? true : wireframe;
+        const wireframeEnabled = document.getElementById("wire").checked;
+        material.wireframe = wireframeEnabled ? true : wireframe;
+        if (material.color && color) {
+          material.color.set(wireframeEnabled ? WIREMESH_COLOR : color);
+        }
         material.needsUpdate = true;
       }
     }

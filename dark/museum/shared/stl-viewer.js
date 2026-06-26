@@ -1,6 +1,7 @@
 import { createViewerDefaults, renderViewerShell } from "./viewer-shell.js";
 import { createPedestalMesh, inferPedestalEnabled, resolveGeometryPedestalRadius, resolvePedestalHeight } from "./pedestal.js";
 import { getActiveTheme, getViewerThemePalette } from "./theme.js";
+import { WIREMESH_COLOR } from "./viewer-colors.js";
 
 const DEFAULT_PRIMARY_TIMEOUT_MS = 45000;
 const DEFAULT_FALLBACK_TIMEOUT_MS = 30000;
@@ -220,6 +221,9 @@ export async function initStlMuseumPage(piece) {
     let sculpture = null;
     let pedestal = null;
     let focusY = 1.0;
+    const solidMaterialColor = () => (
+      useDefaultMaterialColor ? getViewerThemePalette(getActiveTheme()).sculptureColor : materialConfig.color
+    );
 
     const applyViewerTheme = (theme) => {
       const palette = getViewerThemePalette(theme);
@@ -238,7 +242,8 @@ export async function initStlMuseumPage(piece) {
       }
 
       if (sculptureMaterial && useDefaultMaterialColor) {
-        sculptureMaterial.color.set(resolveColor(THREE, palette.sculptureColor));
+        const wireframeEnabled = document.getElementById("wire")?.checked;
+        sculptureMaterial.color.set(resolveColor(THREE, wireframeEnabled ? WIREMESH_COLOR : palette.sculptureColor));
       }
 
       if (sculptureMaterial && useDefaultMaterialSheen) {
@@ -397,8 +402,11 @@ export async function initStlMuseumPage(piece) {
     function updateLook() {
       renderer.toneMappingExposure = ui.n("exposure");
       if (sculptureMaterial) {
+        const wireframeEnabled = document.getElementById("wire").checked;
         sculptureMaterial.roughness = ui.n("rough");
-        sculptureMaterial.wireframe = document.getElementById("wire").checked;
+        sculptureMaterial.wireframe = wireframeEnabled;
+        sculptureMaterial.color.set(resolveColor(THREE, wireframeEnabled ? WIREMESH_COLOR : solidMaterialColor()));
+        sculptureMaterial.needsUpdate = true;
       }
     }
 
