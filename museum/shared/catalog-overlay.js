@@ -5845,6 +5845,182 @@ export const museumPiecesExtension = {
       mobileViewVector: [0.78, 0.34, 0.86]
     }
   },
+  "portrait-of-pharaoh-amasis-smk-cast": {
+    kind: "stl",
+    path: "/egyptian/portrait-of-pharaoh-amasis-smk-cast/",
+    sectionId: "egypt-mesopotamia",
+    sortOrder: 11.7,
+    viewerTitle: "Portrait of Pharaoh Amasis (563-525 BCE)",
+    subtitle: SMK_CAST_SUBTITLE,
+    medium: "Plaster cast",
+    dimensions: "Not recorded by source",
+    source_url: "https://open.smk.dk/en/artwork/3d/KAS576",
+    source_institution: "SMK - National Gallery of Denmark",
+    scan_source: "SMK - National Gallery of Denmark",
+    license: "Public Domain Mark 1.0",
+    license_url: "https://creativecommons.org/publicdomain/mark/1.0/",
+    attribution: "SMK - National Gallery of Denmark",
+    accession: "KAS576",
+    mesh_format: "STL",
+    lobbyMeta: "Source: SMK Open plaster-cast scan (KAS576)",
+    source: smkSource({
+      summary: "SMK Open source mesh for the Royal Cast Collection portrait of Pharaoh Amasis.",
+      recordUrl: "https://open.smk.dk/en/artwork/3d/KAS576",
+      fullUrl: "https://api.smk.dk/api/v1/download-3d/tq57nw40c_68-inv-576-1.stl",
+      fallbackUrl: "https://api.smk.dk/api/v1/download-3d/v405sg337_KAS576_small.stl",
+      note: "SMK publishes the scan with public_domain=true and the Public Domain Mark 1.0. The source title identifies the subject as Pharaoh Amasis (563-525 BCE), with a cast production note naming Firenze, Oronzio Lelli nr. 1288."
+    }),
+    defaults: {
+      zoom: 2.72,
+      lightAngle: 26,
+      lightPower: 2.08,
+      exposure: 0.44,
+      rough: 0.22
+    },
+    model: {
+      primaryUrl: "./portrait-of-pharaoh-amasis-smk-cast_source_small.stl",
+      fallbackUrl: "./portrait-of-pharaoh-amasis-smk-cast_source_small.stl"
+    },
+    scene: {
+      targetHeight: 1.0,
+      focusYRatio: 0.54,
+      defaultYaw: Math.PI * 0.04,
+      defaultViewVector: [0.96, 0.42, 1.28],
+      mobileViewVector: [0.76, 0.34, 1.14]
+    }
+  },
+  "portrait-of-philip-the-arab-smk-cast": {
+    kind: "stl",
+    path: "/roman/portrait-of-philip-the-arab-smk-cast/",
+    sectionId: "roman-world",
+    sortOrder: 101,
+    viewerTitle: "Portrait of Philip the Arab (emperor 244-249 CE)",
+    subtitle: SMK_CAST_SUBTITLE,
+    medium: "Plaster cast",
+    dimensions: "H: 46 cm",
+    source_url: "https://open.smk.dk/en/artwork/3d/KAS2147",
+    source_institution: "SMK - National Gallery of Denmark",
+    scan_source: "SMK - National Gallery of Denmark",
+    license: "Public Domain Mark 1.0",
+    license_url: "https://creativecommons.org/publicdomain/mark/1.0/",
+    attribution: "SMK - National Gallery of Denmark",
+    accession: "KAS2147",
+    mesh_format: "STL",
+    lobbyMeta: "Source: SMK Open plaster-cast scan (KAS2147)",
+    source: smkSource({
+      summary: "SMK Open source mesh for the Royal Cast Collection portrait bust of Philip the Arab.",
+      recordUrl: "https://open.smk.dk/en/artwork/3d/KAS2147",
+      fullUrl: "https://api.smk.dk/api/v1/download-3d/th83m393t_59-smk-philip-the-arab.stl",
+      fallbackUrl: "https://api.smk.dk/api/v1/download-3d/6m311v28x_KAS2147_small.stl",
+      note: "SMK publishes the scan with public_domain=true and the Public Domain Mark 1.0. The source title identifies the subject as Philippus Arabs, emperor 244-249 CE."
+    }),
+    defaults: {
+      zoom: 2.72,
+      lightAngle: 26,
+      lightPower: 2.08,
+      exposure: 0.44,
+      rough: 0.22
+    },
+    model: {
+      primaryUrl: "./portrait-of-philip-the-arab-smk-cast_source_small.stl",
+      fallbackUrl: "./portrait-of-philip-the-arab-smk-cast_source_small.stl"
+    },
+    scene: {
+      targetHeight: 1.02,
+      focusYRatio: 0.56,
+      defaultYaw: -Math.PI * 0.04,
+      defaultViewVector: [0.96, 0.42, 1.3],
+      mobileViewVector: [0.76, 0.34, 1.16]
+    }
+  },
+  "julia-domna-smk-cast": {
+    kind: "stl",
+    path: "/roman/julia-domna-smk-cast/",
+    sectionId: "roman-world",
+    sortOrder: 101.2,
+    viewerTitle: "Julia Domna (wife of Septimius Severus)",
+    subtitle: SMK_CAST_SUBTITLE,
+    medium: "Plaster cast",
+    dimensions: "Not recorded by source",
+    source_url: "https://open.smk.dk/en/artwork/3d/KAS1236",
+    source_institution: "SMK - National Gallery of Denmark",
+    scan_source: "SMK - National Gallery of Denmark",
+    license: "Public Domain Mark 1.0",
+    license_url: "https://creativecommons.org/publicdomain/mark/1.0/",
+    attribution: "SMK - National Gallery of Denmark",
+    accession: "KAS1236",
+    mesh_format: "STL",
+    lobbyMeta: "Source: SMK Open plaster-cast scan (KAS1236)",
+    source: smkSource({
+      summary: "SMK Open source mesh for the Royal Cast Collection plaster head of Julia Domna.",
+      recordUrl: "https://open.smk.dk/en/artwork/3d/KAS1236",
+      fullUrl: "https://api.smk.dk/api/v1/download-3d/dj52w912f_smk5-kas1236-julia-domna.stl",
+      fallbackUrl: "https://api.smk.dk/api/v1/download-3d/4m90f115c_KAS1236_small.stl",
+      note: "SMK publishes the scan with public_domain=true and the Public Domain Mark 1.0. The source identifies the sitter as Julia Domna, wife of Emperor Septimius Severus; the production note names Rom, Cesare Malpieri."
+    }),
+    defaults: {
+      zoom: 2.7,
+      lightAngle: 26,
+      lightPower: 2.08,
+      exposure: 0.44,
+      rough: 0.22
+    },
+    model: {
+      primaryUrl: "./julia-domna-smk-cast_source_small.stl",
+      fallbackUrl: "./julia-domna-smk-cast_source_small.stl"
+    },
+    scene: {
+      targetHeight: 0.98,
+      focusYRatio: 0.55,
+      defaultYaw: Math.PI * 0.03,
+      defaultViewVector: [0.94, 0.42, 1.26],
+      mobileViewVector: [0.74, 0.34, 1.12]
+    }
+  },
+  "hebe-thorvaldsen-smk-cast": {
+    kind: "stl",
+    path: "/neoclassical/hebe-thorvaldsen-smk-cast/",
+    sectionId: "nineteenth-century",
+    sortOrder: 7,
+    viewerTitle: "Hebe (after Bertel Thorvaldsen)",
+    subtitle: "Artist: After Bertel Thorvaldsen (1770-1844)",
+    medium: "Plaster cast",
+    dimensions: "H: 53.5 cm | W: 44.5 cm | D: 37 cm",
+    source_url: "https://open.smk.dk/en/artwork/3d/KAS2918",
+    source_institution: "SMK - National Gallery of Denmark",
+    scan_source: "SMK - National Gallery of Denmark",
+    license: "Public Domain Mark 1.0",
+    license_url: "https://creativecommons.org/publicdomain/mark/1.0/",
+    attribution: "SMK - National Gallery of Denmark",
+    accession: "KAS2918",
+    mesh_format: "STL",
+    lobbyMeta: "Source: SMK Open plaster-cast scan (KAS2918)",
+    source: smkSource({
+      summary: "SMK Open source mesh for Hebe, a Royal Cast Collection copy after Bertel Thorvaldsen.",
+      recordUrl: "https://open.smk.dk/en/artwork/3d/KAS2918",
+      fullUrl: "https://api.smk.dk/api/v1/download-3d/0k225g682_08-smk-hebe-inv-kas2918.stl",
+      fallbackUrl: "https://api.smk.dk/api/v1/download-3d/7p88cn20v_KAS2918_small.stl",
+      note: "SMK publishes the scan with public_domain=true and the Public Domain Mark 1.0. The source records the production role as a copy after Bertel Thorvaldsen and does not provide a production date for the scanned cast."
+    }),
+    defaults: {
+      zoom: 2.78,
+      lightAngle: 26,
+      lightPower: 2.08,
+      exposure: 0.44,
+      rough: 0.22
+    },
+    model: {
+      primaryUrl: "./hebe-thorvaldsen-smk-cast_source_small.stl",
+      fallbackUrl: "./hebe-thorvaldsen-smk-cast_source_small.stl"
+    },
+    scene: {
+      targetHeight: 1.22,
+      focusYRatio: 0.52,
+      defaultYaw: -Math.PI * 0.05,
+      defaultViewVector: [1.02, 0.42, 1.46],
+      mobileViewVector: [0.78, 0.34, 1.28]
+    }
+  },
   "male-pombia-figure": {
     kind: "gltf",
     path: "/sub-saharan-africa/male-pombia-figure/",

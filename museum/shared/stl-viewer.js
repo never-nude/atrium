@@ -1,5 +1,6 @@
 import { createViewerDefaults, renderViewerShell } from "./viewer-shell.js";
 import { createPedestalMesh, inferPedestalEnabled, resolveGeometryPedestalRadius, resolvePedestalHeight } from "./pedestal.js";
+import { WIREMESH_COLOR } from "./viewer-colors.js";
 
 const DEFAULT_PRIMARY_TIMEOUT_MS = 45000;
 const DEFAULT_FALLBACK_TIMEOUT_MS = 30000;
@@ -392,8 +393,11 @@ export async function initStlMuseumPage(piece) {
     function updateLook() {
       renderer.toneMappingExposure = ui.n("exposure") + exposureBoost;
       if (sculptureMaterial) {
+        const wireframeEnabled = document.getElementById("wire").checked;
         sculptureMaterial.roughness = ui.n("rough");
-        sculptureMaterial.wireframe = document.getElementById("wire").checked;
+        sculptureMaterial.wireframe = wireframeEnabled;
+        sculptureMaterial.color.set(resolveColor(THREE, wireframeEnabled ? WIREMESH_COLOR : materialConfig.color));
+        sculptureMaterial.needsUpdate = true;
       }
     }
 

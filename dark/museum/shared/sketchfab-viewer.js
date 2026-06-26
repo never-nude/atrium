@@ -1,4 +1,5 @@
 import { createViewerDefaults, renderViewerShell } from "./viewer-shell.js";
+import { WIREMESH_COLOR_RGBA } from "./viewer-colors.js";
 
 let sketchfabApiPromise = null;
 
@@ -190,7 +191,7 @@ export async function initSketchfabMuseumPage(piece) {
 
   function applyWireframe() {
     if (!state.api || typeof state.api.setWireframe !== "function") return;
-    state.api.setWireframe(document.getElementById("wire").checked, { color: "8D7550FF" }, () => {});
+    state.api.setWireframe(document.getElementById("wire").checked, { color: WIREMESH_COLOR_RGBA }, () => {});
   }
 
   function applyEnvironment() {
